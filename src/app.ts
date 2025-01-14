@@ -8,7 +8,7 @@ import authRoutes from "./utils/authRoutes";
 import { generateDynamicToken } from "./utils/tokenManager";
 
 // Load environment variables dynamically 
-dotenv.config();
+dotenv.config({ path: "../.env" }); 
 
 const app = express();
 const PORT = process.env.PORT || 3000;
