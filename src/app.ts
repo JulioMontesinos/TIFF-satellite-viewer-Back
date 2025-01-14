@@ -19,11 +19,11 @@ console.log("PRODUCTION FRONT URL: ", URL_PRODUCTION_FRONT);
 console.log("PRODUCTION BACK URL: ", URL_PRODUCTION_BACK);
 // Middleware CORS
 const allowedOrigins = [URL_PRODUCTION_FRONT, URL_PRODUCTION_BACK];
-
+console.log("Allowed origins: ", allowedOrigins);
 app.use(
   cors({
     origin: (origin, callback) => {
-      
+      console.log("Origin: ", origin);
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
