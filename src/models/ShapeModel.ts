@@ -2,8 +2,8 @@ import mongoose, { Schema, Document } from "mongoose";
 
 export interface IShape extends Document {
   type: "rectangle" | "polygon";
-  coordinates: number[][]; // Three-dimensional coordinates for the shape
-  userId?: string; // Relates the shape to a user (optional if implementing authentication)
+  coordinates: number[][]; // Two-dimensional coordinates for the shape
+  userId?: string; // Relates the shape to a user (Only if implementing authentication)
 }
 
 const ShapeSchema: Schema = new Schema({

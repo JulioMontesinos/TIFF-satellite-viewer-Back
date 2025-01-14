@@ -5,7 +5,10 @@ let dynamicToken: string | null = null;
 
 // Generates a dynamic token based on the seed from .env
 export const generateDynamicToken = () => {
-  const secret = process.env.JWT_SECRET || "default_secret"; // Token seed
+  const secret = process.env.JWT_SECRET;
+  if (!secret) {
+    throw new Error("JWT_SECRET is not defined. Please configure it in the environment variables.");
+  }
   dynamicToken = jwt.sign(
     { role: "dynamic_user" }, // Token payload
     secret,

@@ -1,12 +1,12 @@
 import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/database";
-import shapeRoutes from "./routes/shapeRoutes"; // Importa el archivo de rutas
+import shapeRoutes from "./routes/shapeRoutes"; // Import the shape routes
 import cors from "cors";
 import authRoutes from "./utils/authRoutes";
 import { generateDynamicToken } from "./utils/tokenManager";
 
-// Carga variables de entorno
+// Load environment variables
 dotenv.config();
 
 const app = express();
@@ -14,13 +14,13 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 
-// Middleware para parsear JSON
+// Middleware to parse JSON bodies
 app.use(express.json());
 
-// Conectar a la base de datos
+// Connect to the database
 connectDB();
 
-// Genera el token dinámico al iniciar
+// Generate a dynamic token
 generateDynamicToken();
 
 app.use("/api/auth", authRoutes);
