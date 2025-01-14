@@ -40,7 +40,7 @@ if (process.env.DATA_SOURCE !== "mock") {
 console.log("Generating dynamic token");
 // Generate a dynamic token
 (0, tokenManager_1.generateDynamicToken)();
-console.log("Configurando middleware para /api/auth");
+
 app.use("/api/auth", authRoutes_1.default);
 // Dynamically select the shape routes based on the data source
 const shapeRoutes = process.env.DATA_SOURCE === "mock" ? shapeRoutesMock_1.default : shapeRoutesMongo_1.default;
