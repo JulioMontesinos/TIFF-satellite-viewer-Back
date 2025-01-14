@@ -42,15 +42,16 @@ app.use(express.json());
 if (process.env.DATA_SOURCE !== "mock") {
   connectDB();
 }
-
+console.log("Generating dynamic token");
 // Generate a dynamic token
 generateDynamicToken();
-
+console.log("Configurando middleware para /api/auth");
 app.use("/api/auth", authRoutes);
 
 // Dynamically select the shape routes based on the data source
 const shapeRoutes = process.env.DATA_SOURCE === "mock" ? shapeRoutesMock : shapeRoutesMongo;
 
+console.log("Cargando ruta /api/shapes");
 // Use the selected shape routes
 app.use("/api/shapes", shapeRoutes);
 
