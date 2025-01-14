@@ -7,20 +7,29 @@ import cors from "cors";
 import authRoutes from "./utils/authRoutes";
 import { generateDynamicToken } from "./utils/tokenManager";
 
-// Load environment variables
+// Load environment variables dynamically 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-//const URL_PRODUCTION: string = process.env.URL_PRODUCTION || "http://localhost:3000";
+const URL_PRODUCTION_FRONT: string = process.env.URL_PRODUCTION_FRONT || "http://localhost:5173";
+const URL_PRODUCTION_BACK: string = process.env.URL_PRODUCTION_BACK || "http://localhost:3000";
 
 // Middleware CORS
+const allowedOrigins = [URL_PRODUCTION_FRONT, URL_PRODUCTION_BACK];
+
 app.use(
   cors({
-    origin: "*", // URLs permitidas
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Métodos permitidos
-    allowedHeaders: ["Content-Type", "Authorization"], // Cabeceras permitidas
-    credentials: true, // Permitir cookies
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
   })
 );
 
