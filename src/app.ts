@@ -27,7 +27,7 @@ const allowedOrigins = [
 console.log("Allowed origins: ", allowedOrigins);
 app.use(
   cors({
-    origin: "*",
+    origin: allowedOrigins,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
