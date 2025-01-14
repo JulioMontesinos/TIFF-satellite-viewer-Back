@@ -19,20 +19,17 @@ const URL_PRODUCTION_FRONT = process.env.URL_PRODUCTION_FRONT || "http://localho
 const URL_PRODUCTION_BACK = process.env.URL_PRODUCTION_BACK || "http://localhost:3000";
 console.log("PRODUCTION FRONT URL: ", URL_PRODUCTION_FRONT);
 console.log("PRODUCTION BACK URL: ", URL_PRODUCTION_BACK);
+const allowedOrigins = [
+    "https://tiff-satellite-viewer-front.vercel.app",
+    "https://tiff-satellite-viewer-back.vercel.app",
+];
 // Middleware CORS
-const allowedOrigins = [URL_PRODUCTION_FRONT, URL_PRODUCTION_BACK];
+/* const allowedOrigins = [URL_PRODUCTION_FRONT, URL_PRODUCTION_BACK]; */
+console.log("Allowed origins: ", allowedOrigins);
 app.use((0, cors_1.default)({
-    origin: (origin, callback) => {
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-        }
-        else {
-            callback(new Error("Not allowed by CORS"));
-        }
-    },
+    origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true,
 }));
 // Middleware to parse JSON bodies
 app.use(express_1.default.json());
