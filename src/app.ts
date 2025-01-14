@@ -18,12 +18,8 @@ const URL_PRODUCTION_BACK: string = process.env.URL_PRODUCTION_BACK || "http://l
 console.log("PRODUCTION FRONT URL: ", URL_PRODUCTION_FRONT);
 console.log("PRODUCTION BACK URL: ", URL_PRODUCTION_BACK);
 
-const allowedOrigins = [
-  "https://tiff-satellite-viewer-front.vercel.app",
-  "https://tiff-satellite-viewer-back.vercel.app",
-];
 // Middleware CORS
-/* const allowedOrigins = [URL_PRODUCTION_FRONT, URL_PRODUCTION_BACK]; */
+const allowedOrigins = [URL_PRODUCTION_FRONT, URL_PRODUCTION_BACK];
 console.log("Allowed origins: ", allowedOrigins);
 app.use(
   cors({
