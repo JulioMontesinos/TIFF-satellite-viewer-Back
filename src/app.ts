@@ -22,14 +22,7 @@ const allowedOrigins = [URL_PRODUCTION_FRONT, URL_PRODUCTION_BACK];
 console.log("Allowed origins: ", allowedOrigins);
 app.use(
   cors({
-    origin: (origin, callback) => {
-      console.log("Origin: ", origin);
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
+    origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
