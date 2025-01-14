@@ -23,8 +23,7 @@ console.log("PRODUCTION BACK URL: ", URL_PRODUCTION_BACK);
 const allowedOrigins = [URL_PRODUCTION_FRONT, URL_PRODUCTION_BACK];
 app.use((0, cors_1.default)({
     origin: (origin, callback) => {
-        // Permitir solicitudes con Origin: null (ejemplo: Postman o archivos locales)
-        if (!origin || allowedOrigins.includes(origin) || origin === null) {
+        if (!origin || allowedOrigins.includes(origin)) {
             callback(null, true);
         }
         else {
