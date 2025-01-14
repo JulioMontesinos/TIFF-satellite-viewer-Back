@@ -18,8 +18,9 @@ const URL_PRODUCTION: string = process.env.URL_PRODUCTION || "http://localhost:3
 app.use(
   cors({
     origin: [URL_PRODUCTION], // URLs permitidas
-    methods: ["GET", "POST", "PUT", "DELETE"], // Métodos HTTP permitidos
-    credentials: true, // Permitir cookies si es necesario
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Métodos permitidos
+    allowedHeaders: ["Content-Type", "Authorization"], // Cabeceras permitidas
+    credentials: true, // Permitir cookies
   })
 );
 
