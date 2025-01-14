@@ -4,7 +4,6 @@ import Shape from "../models/ShapeModel";
 import { isValidCoordinates } from "../utils/validators";
 import { tokenMiddleware } from "../utils/tokenMiddleware";
 
-
 const router = Router();
 
 router.use(tokenMiddleware); // Middleware to validate the token

@@ -1,7 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/database";
-import shapeRoutes from "./routes/shapeRoutes"; // Import the shape routes
+import shapeRoutesMongo from "./routes/shapeRoutesMongo"; // Import the shape routes from the mock data
+import shapeRoutesMock from "./routes/shapeRoutesMock"; //Import the shape routes from database
 import cors from "cors";
 import authRoutes from "./utils/authRoutes";
 import { generateDynamicToken } from "./utils/tokenManager";
@@ -18,12 +19,19 @@ app.use(cors());
 app.use(express.json());
 
 // Connect to the database
-connectDB();
+if (process.env.DATA_SOURCE !== "mock") {
+  connectDB();
+}
 
 // Generate a dynamic token
 generateDynamicToken();
 
 app.use("/api/auth", authRoutes);
+
+// Dynamically select the shape routes based on the data source
+const shapeRoutes = process.env.DATA_SOURCE === "mock" ? shapeRoutesMock : shapeRoutesMongo;
+
+// Use the selected shape routes
 app.use("/api/shapes", shapeRoutes);
 
 app.get("/", (req, res) => {
