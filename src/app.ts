@@ -12,8 +12,16 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const URL_PRODUCTION: string = process.env.URL_PRODUCTION || "http://localhost:3000";
 
-app.use(cors());
+// Middleware CORS
+app.use(
+  cors({
+    origin: [URL_PRODUCTION], // URLs permitidas
+    methods: ["GET", "POST", "PUT", "DELETE"], // Métodos HTTP permitidos
+    credentials: true, // Permitir cookies si es necesario
+  })
+);
 
 // Middleware to parse JSON bodies
 app.use(express.json());
