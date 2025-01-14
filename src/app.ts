@@ -23,11 +23,10 @@ const allowedOrigins = [URL_PRODUCTION_FRONT, URL_PRODUCTION_BACK];
 app.use(
   cors({
     origin: (origin, callback) => {
-      console.log("Origin:", origin);
-      if (!origin || allowedOrigins.includes(origin)) {
+      
+      if (!origin || allowedOrigins.includes(origin) || origin === null) {
         callback(null, true);
       } else {
-        console.error("Blocked by CORS:", origin); 
         callback(new Error("Not allowed by CORS"));
       }
     },

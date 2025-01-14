@@ -23,12 +23,11 @@ console.log("PRODUCTION BACK URL: ", URL_PRODUCTION_BACK);
 const allowedOrigins = [URL_PRODUCTION_FRONT, URL_PRODUCTION_BACK];
 app.use((0, cors_1.default)({
     origin: (origin, callback) => {
-        console.log("Origin:", origin);
-        if (!origin || allowedOrigins.includes(origin)) {
+        // Permitir solicitudes con Origin: null (ejemplo: Postman o archivos locales)
+        if (!origin || allowedOrigins.includes(origin) || origin === null) {
             callback(null, true);
         }
         else {
-            console.error("Blocked by CORS:", origin);
             callback(new Error("Not allowed by CORS"));
         }
     },
