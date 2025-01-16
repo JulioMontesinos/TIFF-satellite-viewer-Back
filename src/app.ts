@@ -14,9 +14,10 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const URL_PRODUCTION_FRONT: string = process.env.URL_PRODUCTION_FRONT || "http://localhost:5173";
 const URL_PRODUCTION_BACK: string = process.env.URL_PRODUCTION_BACK || "http://localhost:3000";
+const URL_PRODUCTION_TIFF: string = process.env.URL_PRODUCTION_TIFF || "https://my-tiff-image-bucket.s3.ap-southeast-2.amazonaws.com/TCI.tif";
 
 // Middleware CORS
-const allowedOrigins = [URL_PRODUCTION_FRONT, URL_PRODUCTION_BACK];
+const allowedOrigins = [URL_PRODUCTION_FRONT, URL_PRODUCTION_BACK, URL_PRODUCTION_TIFF];
 app.use(
   cors({
     origin: allowedOrigins,
